@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Royal Restaurant</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Georgia, serif;
+            background-color: #5b0000;
+            color: #ffd700;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: #300000;
+            padding: 18px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid #d4af37;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #ffd700;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            color: #ffd700;
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+        nav ul li a:hover {
+            color: white;
+        }
+
+        /* Home */
+        #home {
+            min-height: 90vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px;
+            background:
+                linear-gradient(rgba(91,0,0,0.85), rgba(91,0,0,0.85));
+        }
+
+        .hero h1 {
+            font-size: 65px;
+            margin-bottom: 20px;
+            color: #ffd700;
+        }
+
+        .hero h2 {
+            font-size: 30px;
+            color: #fff0a6;
+            margin-bottom: 25px;
+        }
+
+        .hero p {
+            font-size: 19px;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 13px 30px;
+            background-color: #ffd700;
+            color: #5b0000;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background-color: white;
+        }
+
+        /* General Sections */
+        section {
+            padding: 70px 8%;
+            text-align: center;
+        }
+
+        section h2 {
+            font-size: 40px;
+            margin-bottom: 40px;
+            color: #ffd700;
+        }
+
+        /* Menu */
+        .menu-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+        }
+
+        .menu-card {
+            background-color: #300000;
+            border: 1px solid #d4af37;
+            border-radius: 12px;
+            padding: 30px 20px;
+            transition: 0.3s;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .menu-card h3 {
+            font-size: 27px;
+            margin-bottom: 15px;
+        }
+
+        .menu-card p {
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .price {
+            color: #ffd700;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        /* Contact */
+        #contact {
+            background-color: #300000;
+        }
+
+        .contact-box {
+            max-width: 600px;
+            margin: auto;
+            font-size: 20px;
+            line-height: 2;
+            color: white;
+        }
+
+        .contact-box strong {
+            color: #ffd700;
+        }
+
+        /* Reviews */
+        .review-container {
+            max-width: 700px;
+            margin: auto;
+        }
+
+        .review {
+            background-color: #300000;
+            border: 1px solid #d4af37;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 10px;
+            text-align: left;
+        }
+
+        .review h3 {
+            color: #ffd700;
+            margin-bottom: 8px;
+        }
+
+        .review p {
+            color: white;
+        }
+
+        .stars {
+            color: #ffd700;
+            margin-bottom: 10px;
+        }
+
+        /* Feedback Form */
+        .feedback {
+            max-width: 600px;
+            margin: 50px auto 0;
+            background-color: #300000;
+            padding: 30px;
+            border-radius: 10px;
+            border: 1px solid #d4af37;
+        }
+
+        .feedback input,
+        .feedback textarea,
+        .feedback select {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .feedback textarea {
+            height: 100px;
+            resize: none;
+        }
+
+        .feedback button {
+            padding: 12px 30px;
+            background-color: #ffd700;
+            color: #5b0000;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .feedback button:hover {
+            background-color: white;
+        }
+
+        #message {
+            margin-top: 15px;
+            color: #ffd700;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #180000;
+            padding: 25px;
+            text-align: center;
+            color: #ffd700;
+        }
+
+        /* Mobile */
+        @media (max-width: 700px) {
+
+            nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav ul {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 42px;
+            }
+
+            .hero h2 {
+                font-size: 22px;
+            }
+
+            section h2 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">👑 Royal Restaurant</div>
+
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#reviews">Reviews</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+
+    <!-- Home -->
+    <section id="home">
+        <div class="hero">
+
+            <h1>Royal Restaurant</h1>
+
+            <h2>Where Every Bite Feels Royal</h2>
+
+            <p>
+                Experience delicious food, royal hospitality,
+                and unforgettable flavors.
+            </p>
+
+            <a href="#menu" class="btn">Explore Our Menu</a>
+
+        </div>
+    </section>
+
+
+    <!-- Menu -->
+    <section id="menu">
+
+        <h2>Our Royal Menu</h2>
+
+        <div class="menu-container">
+
+            <div class="menu-card">
+                <h3>🍨 Ice Cream</h3>
+                <p>Delicious and creamy desserts</p>
+                <div class="price">₹50 - ₹100</div>
+            </div>
+
+            <div class="menu-card">
+                <h3>🍛 Biryani</h3>
+                <p>Rich, aromatic and flavorful</p>
+                <div class="price">₹250 - ₹600</div>
+            </div>
+
+            <div class="menu-card">
+                <h3>🥘 Starters</h3>
+                <p>Crispy and delicious starters</p>
+                <div class="price">₹200 - ₹240</div>
+            </div>
+
+            <div class="menu-card">
+                <h3>🥤 Mocktails</h3>
+                <p>Refreshing royal drinks</p>
+                <div class="price">₹100 - ₹150</div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Reviews -->
+    <section id="reviews">
+
+        <h2>Customer Reviews</h2>
+
+        <div class="review-container">
+
+            <div class="review">
+                <h3>Rahul</h3>
+                <div class="stars">★★★★★</div>
+                <p>
+                    Amazing biryani and excellent service.
+                    The food was very tasty!
+                </p>
+            </div>
+
+            <div class="review">
+                <h3>Priya</h3>
+                <div class="stars">★★★★★</div>
+                <p>
+                    Beautiful atmosphere and delicious food.
+                    Loved the mocktails!
+                </p>
+            </div>
+
+            <div class="review">
+                <h3>Arjun</h3>
+                <div class="stars">★★★★☆</div>
+                <p>
+                    Great place for family and friends.
+                    The starters were really good.
+                </p>
+            </div>
+
+        </div>
+
+
+        <!-- Feedback Form -->
+        <div class="feedback">
+
+            <h3>Share Your Feedback</h3>
+
+            <form id="feedbackForm">
+
+                <input
+                    type="text"
+                    id="name"
+                    placeholder="Enter your name"
+                    required
+                >
+
+                <select id="rating" required>
+                    <option value="">Select Rating</option>
+                    <option value="5">★★★★★ - Excellent</option>
+                    <option value="4">★★★★☆ - Very Good</option>
+                    <option value="3">★★★☆☆ - Good</option>
+                    <option value="2">★★☆☆☆ - Average</option>
+                    <option value="1">★☆☆☆☆ - Poor</option>
+                </select>
+
+                <textarea
+                    id="feedbackText"
+                    placeholder="Write your feedback"
+                    required
+                ></textarea>
+
+                <button type="submit">
+                    Submit Feedback
+                </button>
+
+            </form>
+
+            <div id="message"></div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Contact -->
+    <section id="contact">
+
+        <h2>Contact Us</h2>
+
+        <div class="contact-box">
+
+            <p>
+                📞 <strong>Phone:</strong>
+                7898675678
+            </p>
+
+            <p>
+                📍 <strong>Address:</strong>
+                Tadepalligudem
+            </p>
+
+            <p>
+                👑 <strong>Royal Restaurant</strong>
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+        <p>
+            © 2026 Royal Restaurant | All Rights Reserved
+        </p>
+    </footer>
+
+
+    <!-- JavaScript -->
+    <script>
+
+        const feedbackForm =
+            document.getElementById("feedbackForm");
+
+        const message =
+            document.getElementById("message");
+
+        feedbackForm.addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            const name =
+                document.getElementById("name").value;
+
+            const rating =
+                document.getElementById("rating").value;
+
+            const feedback =
+                document.getElementById("feedbackText").value;
+
+            message.innerHTML =
+                "Thank you, " + name +
+                "! Your " + rating +
+                "-star feedback has been received. ⭐";
+
+            feedbackForm.reset();
+
+        });
+
+    </script>
+
+</body>
+</html>
